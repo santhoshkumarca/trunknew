@@ -3,6 +3,7 @@
 	<body>
 		<referenceContainer name="content">
 			<block class="Echidna\Custompayment\Block\Index\Index" name="index.index" template="Echidna_Custompayment::index/index.phtml"/>
+            
 		</referenceContainer>
 	</body>
 </page>
