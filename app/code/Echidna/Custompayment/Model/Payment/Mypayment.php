@@ -3,15 +3,10 @@
 
 namespace Echidna\Custompayment\Model\Payment;
 
-/**
- * Class Offlinepayment
- *
- * @package Echidna\Custompayment\Model\Payment
- */
-class Offlinepayment extends \Magento\Payment\Model\Method\AbstractMethod
+class Mypayment extends \Magento\Payment\Model\Method\AbstractMethod
 {
 
-    protected $_code = "offlinepayment";
+    protected $_code = "mypayment";
     protected $_isOffline = true;
 
     public function isAvailable(
@@ -20,4 +15,3 @@ class Offlinepayment extends \Magento\Payment\Model\Method\AbstractMethod
         return parent::isAvailable($quote);
     }
 }
-

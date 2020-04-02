@@ -3,11 +3,6 @@
 
 namespace Echidna\Custompayment\Controller\Index;
 
-/**
- * Class Index
- *
- * @package Echidna\Custompayment\Controller\Index
- */
 class Index extends \Magento\Framework\App\Action\Action
 {
 
@@ -37,4 +32,3 @@ class Index extends \Magento\Framework\App\Action\Action
         return $this->resultPageFactory->create();
     }
 }
-

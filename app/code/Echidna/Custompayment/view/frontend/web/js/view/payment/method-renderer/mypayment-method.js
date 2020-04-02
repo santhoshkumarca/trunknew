@@ -6,7 +6,7 @@ define(
         'use strict';
         return Component.extend({
             defaults: {
-                template: 'Echidna_Custompayment/payment/offlinepayment'
+                template: 'Echidna_Custompayment/payment/mypayment'
             },
             getMailingAddress: function () {
                 return window.checkoutConfig.payment.checkmo.mailingAddress;

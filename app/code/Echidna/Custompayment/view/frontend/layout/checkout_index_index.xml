@@ -15,10 +15,10 @@
 													<item name="children" xsi:type="array">
 														<item name="renders" xsi:type="array">
 															<item name="children" xsi:type="array">
-																<item name="offlinepayment" xsi:type="array">
-																	<item name="component" xsi:type="string">Echidna_Custompayment/js/view/payment/offlinepayment</item>
+																<item name="mypayment" xsi:type="array">
+																	<item name="component" xsi:type="string">Echidna_Custompayment/js/view/payment/mypayment</item>
 																	<item name="methods" xsi:type="array">
-																		<item name="offlinepayment" xsi:type="array">
+																		<item name="mypayment" xsi:type="array">
 																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
 																		</item>
 																	</item>

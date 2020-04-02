@@ -10,8 +10,8 @@ define(
         'use strict';
         rendererList.push(
             {
-                type: 'offlinepayment',
-                component: 'Echidna_Custompayment/js/view/payment/method-renderer/offlinepayment-method'
+                type: 'mypayment',
+                component: 'Echidna_Custompayment/js/view/payment/method-renderer/mypayment-method'
             }
         );
         return Component.extend({});

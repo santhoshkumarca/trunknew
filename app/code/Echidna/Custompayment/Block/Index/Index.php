@@ -3,11 +3,6 @@
 
 namespace Echidna\Custompayment\Block\Index;
 
-/**
- * Class Index
- *
- * @package Echidna\Custompayment\Block\Index
- */
 class Index extends \Magento\Framework\View\Element\Template
 {
 
@@ -23,5 +18,7 @@ class Index extends \Magento\Framework\View\Element\Template
     ) {
         parent::__construct($context, $data);
     }
+    public function getDetails(){
+        return 'this is a blockj';
+    }
 }
-
