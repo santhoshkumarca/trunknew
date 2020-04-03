@@ -30,7 +30,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'custom_fee',
                 [
                     'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
-                    '10,2',
+                    '20,4',
                     'default' => 0.00,
                     'nullable' => true,
                     'comment' =>'Fee'

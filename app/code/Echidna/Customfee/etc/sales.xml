@@ -5,4 +5,14 @@
             <item name="handlingfee" instance="Echidna\Customfee\Model\Quote\Address\Total\Customfee" sort_order="400"/>
         </group>
     </section>
+    <section name="order_invoice">
+        <group name="totals">
+            <item name="handlingfee" instance="Echidna\Customfee\Model\Invoice\Total\Customfee" sort_order="160"/>
+        </group>
+    </section>
+    <section name="order_creditmemo">
+        <group name="totals">
+            <item name="handlingfee" instance="Echidna\Customfee\Model\Creditmemo\Total\Customfee" sort_order="160"/>
+        </group>
+    </section>
 </config>

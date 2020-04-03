@@ -1,5 +1,7 @@
 <?php
 namespace Echidna\Customfee\Model\Quote\Address\Total;
+use Magento\Checkout\Model\Session;
+
 class Customfee extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
 {
     /**
@@ -11,9 +13,11 @@ class Customfee extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
      * @param \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
      */
     public function __construct(
-        \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
+        \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
+        Session $session
     ) {
         $this->_priceCurrency = $priceCurrency;
+        $this->_session = $session;
     }
 
     public function collect(
@@ -23,31 +27,20 @@ class Customfee extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     ) {
         parent::collect($quote, $shippingAssignment, $total);
 
-        if (!count($shippingAssignment->getItems())) {
-            return $this;
+//        if (!count($shippingAssignment->getItems())) {
+//            return $this;
+//        }
+        $customFee = 0;
+        foreach ($shippingAssignment->getItems() as $item){
+            if($item->getWeight() > 100 && !empty($item->getWeight())){
+                $customFee = 15 + $customFee;
+            }
         }
-        foreach ($shippingAssignment->getItems() as $item) {
-            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-            $logger = new \Zend\Log\Logger();
-            $logger->addWriter($writer);
-            $logger->info($item->getItemId());
-        }
-
-            $customFee = $this->getValue();
-            //Try to test with sample value
             $total->setCustomFee($customFee);
-            $total->setTotalAmount('handlingfee', $customFee);
-            $total->setBaseTotalAmount('handlingfee', $customFee);
-//            $quote->setCustomFee($customFee);
-//            $total->setGrandTotal($total->getGrandTotal() + $customFee);
-//            $total->setBaseGrandTotal($total->getBaseGrandTotal() + $customFee);
-
-
-//            $handlingFee = $this->getValue();
-//            $total->setCustomFee($handlingFee);
-//            $total->addTotalAmount('handlingfee', $handlingFee);
-//            $total->addBaseTotalAmount('handlingfee', $handlingFee);
-//            $quote->setCustomFee($handlingFee);
+            $total->setTotalAmount('custom_fee', $customFee);
+            $total->setBaseTotalAmount('custom_fee', $customFee);
+            $total->setCustomFee($customFee);
+            $quote->setCustomFee($customFee);
         return $this;
     }
 
@@ -55,10 +48,17 @@ class Customfee extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         \Magento\Quote\Model\Quote $quote,
         \Magento\Quote\Model\Quote\Address\Total $total
     ) {
+        $customFee = 0;
+        foreach ($quote->getItems() as $item){
+            if($item->getWeight() > 100 && !empty($item->getWeight())){
+                $customFee = 15 + $customFee;
+            }
+        }
+
         return [
-            'code' => 'Handling_Fee',
+            'code' => 'custom_fee',
             'title' => $this->getLabel(),
-            'value' => $this->getValue()
+            'value' => $customFee
         ];
     }
 
@@ -69,7 +69,5 @@ class Customfee extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     public function getLabel() {
         return __('Custom Fee');
     }
-    public function getValue(){
-        return 15;
-    }
+
 }

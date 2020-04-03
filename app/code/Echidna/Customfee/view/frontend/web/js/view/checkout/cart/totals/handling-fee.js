@@ -1,13 +1,10 @@
 define(
-    [
+    [   'jquery',
         'Echidna_Customfee/js/view/checkout/summary/handling-fee'
     ],
-    function (Component) {
+    function ($,Component) {
         'use strict';
         return Component.extend({
-            /**
-             * @override
-             */
             isDisplayed: function () {
                 return true;
             }
